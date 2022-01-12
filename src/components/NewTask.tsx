@@ -36,9 +36,9 @@ const NewTask: React.FC<NewTaskProps> = ({ onAddTask }) => {
         />
         <label htmlFor="priority">Priority</label>
         <select name="priority" id="priority" onChange={onPriorityHandler}>
-          <option value="3">3</option>
-          <option value="2">2</option>
-          <option value="1">1</option>
+          <option value="3">Important</option>
+          <option value="2">middle</option>
+          <option value="1">not that important</option>
         </select>
       </div>
       <button type="submit">ADD TASK</button>

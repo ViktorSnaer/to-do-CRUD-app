@@ -6,13 +6,22 @@ interface ToDoListProps {
 }
 
 const ToDoList: React.FC<ToDoListProps> = ({ items, onDeleteTask }) => {
+  const sortedItems = items.sort((a, b) => {
+    if (a.priority > b.priority) {
+      return -1;
+    }
+    if (a.priority < b.priority) {
+      return 1;
+    }
+    return 0;
+  });
+
   return (
     <ul>
-      {items.map((item) => {
+      {sortedItems.map((item) => {
         return (
           <li key={item.id}>
             <span>{item.text}</span>
-            <span>{item.priority}</span>
             <button onClick={onDeleteTask.bind(null, item.id)}>DELETE</button>
           </li>
         );
