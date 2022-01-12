@@ -1,23 +1,33 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 
 type NewTaskProps = {
   onAddTask: (taskText: string) => void;
 };
 
 const NewTask: React.FC<NewTaskProps> = ({ onAddTask }) => {
-  const taskTextRef = useRef<HTMLInputElement>(null);
+  const [taskText, setTaskText] = useState("");
 
   const taskSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    const enteredText = taskTextRef.current!.value;
-    onAddTask(enteredText);
+    onAddTask(taskText);
+    setTaskText("");
+  };
+
+  const onTypeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    let typedText = event.currentTarget.value;
+    setTaskText(typedText);
   };
 
   return (
     <form onSubmit={taskSubmitHandler}>
       <div>
         <label htmlFor="task-text">Task Text</label>
-        <input type="text" id="task-text" ref={taskTextRef} />
+        <input
+          type="text"
+          id="task-text"
+          onChange={onTypeHandler}
+          value={taskText}
+        />
       </div>
       <button type="submit">ADD TASK</button>
     </form>
