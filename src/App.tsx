@@ -3,12 +3,14 @@ import NewTask from "./components/NewTask";
 import ToDoList from "./components/ToDoList";
 
 function App() {
-  const [tasks, setTasks] = useState<{ id: string; text: string }[]>([]);
+  const [tasks, setTasks] = useState<
+    { id: string; text: string; priority: string }[]
+  >([]);
 
-  const addTaskHandler = (text: string) => {
+  const addTaskHandler = (text: string, priority: string) => {
     setTasks((previousTasks) => [
       ...previousTasks,
-      { id: Math.random().toString(), text: text },
+      { id: Math.random().toString(), text: text, priority: priority },
     ]);
   };
 

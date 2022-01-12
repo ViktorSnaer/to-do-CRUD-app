@@ -1,21 +1,27 @@
 import React, { useState } from "react";
 
 type NewTaskProps = {
-  onAddTask: (taskText: string) => void;
+  onAddTask: (taskText: string, priority: string) => void;
 };
 
 const NewTask: React.FC<NewTaskProps> = ({ onAddTask }) => {
   const [taskText, setTaskText] = useState("");
+  const [priorityLevel, setPriorityLevel] = useState("3");
 
   const taskSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    onAddTask(taskText);
+    onAddTask(taskText, priorityLevel);
     setTaskText("");
   };
 
   const onTypeHandler = (event: React.FormEvent<HTMLInputElement>) => {
     let typedText = event.currentTarget.value;
     setTaskText(typedText);
+  };
+
+  const onPriorityHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    let prioritySelected = event.currentTarget.value;
+    setPriorityLevel(prioritySelected);
   };
 
   return (
@@ -28,6 +34,12 @@ const NewTask: React.FC<NewTaskProps> = ({ onAddTask }) => {
           onChange={onTypeHandler}
           value={taskText}
         />
+        <label htmlFor="priority">Priority</label>
+        <select name="priority" id="priority" onChange={onPriorityHandler}>
+          <option value="3">3</option>
+          <option value="2">2</option>
+          <option value="1">1</option>
+        </select>
       </div>
       <button type="submit">ADD TASK</button>
     </form>
