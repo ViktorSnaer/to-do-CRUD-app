@@ -1,8 +1,40 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 
 type NewTaskProps = {
   onAddTask: (taskText: string, priority: string) => void;
 };
+
+const TaskContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+`;
+
+const TaskInput = styled.input`
+  border: none;
+  border-bottom: 1px solid black;
+  margin: 1rem 0;
+  font-size: 1.4rem;
+  &:focus {
+    outline: none;
+  }
+`;
+
+const DropDown = styled.select`
+  margin: 1rem 0;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  height: 2rem;
+`;
+
+const SubmitButton = styled.button`
+  background-color: transparent;
+  height: 2rem;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  margin: 1rem 0;
+`;
 
 const NewTask: React.FC<NewTaskProps> = ({ onAddTask }) => {
   const [taskText, setTaskText] = useState("");
@@ -26,22 +58,23 @@ const NewTask: React.FC<NewTaskProps> = ({ onAddTask }) => {
 
   return (
     <form onSubmit={taskSubmitHandler}>
-      <div>
-        <label htmlFor="task-text">Task Text</label>
-        <input
+      <TaskContainer>
+        <TaskInput
+          autoComplete="off"
+          placeholder="Write down a task..."
           type="text"
           id="task-text"
           onChange={onTypeHandler}
           value={taskText}
         />
-        <label htmlFor="priority">Priority</label>
-        <select name="priority" id="priority" onChange={onPriorityHandler}>
+        <DropDown name="priority" id="priority" onChange={onPriorityHandler}>
+          <option value="3">Set Priority</option>
           <option value="3">Important</option>
           <option value="2">middle</option>
           <option value="1">not that important</option>
-        </select>
-      </div>
-      <button type="submit">ADD TASK</button>
+        </DropDown>
+        <SubmitButton type="submit">ADD TASK</SubmitButton>
+      </TaskContainer>
     </form>
   );
 };

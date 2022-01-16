@@ -1,4 +1,9 @@
 import React from "react";
+import styled from "styled-components";
+
+const TaskList = styled.ul`
+  width: 100%;
+`;
 
 interface ToDoListProps {
   items: { id: string; text: string; priority: string }[];
@@ -17,7 +22,7 @@ const ToDoList: React.FC<ToDoListProps> = ({ items, onDeleteTask }) => {
   });
 
   return (
-    <ul>
+    <TaskList>
       {sortedItems.map((item) => {
         return (
           <li key={item.id}>
@@ -31,7 +36,7 @@ const ToDoList: React.FC<ToDoListProps> = ({ items, onDeleteTask }) => {
           </li>
         );
       })}
-    </ul>
+    </TaskList>
   );
 };
 
