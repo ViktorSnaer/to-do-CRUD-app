@@ -21,7 +21,12 @@ const ToDoList: React.FC<ToDoListProps> = ({ items, onDeleteTask }) => {
       {sortedItems.map((item) => {
         return (
           <li key={item.id}>
-            <span>{item.text}</span>
+            <span contentEditable={true}>{item.text}</span>
+            <input
+              onClick={onDeleteTask.bind(null, item.id)}
+              type={"checkbox"}
+              id="finished"
+            />
             <button onClick={onDeleteTask.bind(null, item.id)}>DELETE</button>
           </li>
         );
