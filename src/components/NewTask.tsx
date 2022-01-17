@@ -8,7 +8,6 @@ type NewTaskProps = {
 const TaskContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0.5rem;
 `;
 
 const TaskInput = styled.input`

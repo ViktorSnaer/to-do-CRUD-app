@@ -23,6 +23,7 @@ function App() {
   const App = styled.div`
     max-width: 1000px;
     margin: auto;
+    padding: 1rem;
   `;
 
   const Title = styled.h1`

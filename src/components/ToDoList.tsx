@@ -2,7 +2,37 @@ import React from "react";
 import styled from "styled-components";
 
 const TaskList = styled.ul`
-  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+`;
+
+const TaskContainer = styled.li`
+  font-size: 1.4rem;
+  border: solid black 1px;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem 0;
+`;
+
+const Text = styled.p`
+  width: 90%;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+`;
+
+const CheckBox = styled.input`
+  width: 1.3rem;
+  height: 1.3rem;
+  background-color: white;
+  border-radius: 20%;
+  vertical-align: middle;
+  border: 1px solid black;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  float: right;
 `;
 
 interface ToDoListProps {
@@ -25,15 +55,15 @@ const ToDoList: React.FC<ToDoListProps> = ({ items, onDeleteTask }) => {
     <TaskList>
       {sortedItems.map((item) => {
         return (
-          <li key={item.id}>
-            <span contentEditable={true}>{item.text}</span>
-            <input
+          <TaskContainer key={item.id}>
+            <Text contentEditable={true}>{item.text}</Text>
+            <CheckBox
               onClick={onDeleteTask.bind(null, item.id)}
               type={"checkbox"}
               id="finished"
             />
-            <button onClick={onDeleteTask.bind(null, item.id)}>DELETE</button>
-          </li>
+            {/* <button onClick={onDeleteTask.bind(null, item.id)}>DELETE</button> */}
+          </TaskContainer>
         );
       })}
     </TaskList>
