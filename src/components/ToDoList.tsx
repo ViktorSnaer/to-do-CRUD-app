@@ -9,7 +9,6 @@ const TaskList = styled.ul`
 
 const TaskContainer = styled.li`
   font-size: 1.4rem;
-  border: solid black 1px;
   border-radius: 10px;
   padding: 1rem;
   margin: 1rem 0;
@@ -28,7 +27,6 @@ const CheckBox = styled.input`
   background-color: white;
   border-radius: 20%;
   vertical-align: middle;
-  border: 1px solid black;
   appearance: none;
   outline: none;
   cursor: pointer;
@@ -54,15 +52,25 @@ const ToDoList: React.FC<ToDoListProps> = ({ items, onDeleteTask }) => {
   return (
     <TaskList>
       {sortedItems.map((item) => {
+        let setPriorityColor = "";
+        if (item.priority === "3") {
+          setPriorityColor = "#445942";
+        } else if (item.priority === "2") {
+          setPriorityColor = "#809370";
+        } else {
+          setPriorityColor = "#c3d3b2";
+        }
         return (
-          <TaskContainer key={item.id}>
+          <TaskContainer
+            style={{ backgroundColor: setPriorityColor }}
+            key={item.id}
+          >
             <Text contentEditable={true}>{item.text}</Text>
             <CheckBox
               onClick={onDeleteTask.bind(null, item.id)}
               type={"checkbox"}
               id="finished"
             />
-            {/* <button onClick={onDeleteTask.bind(null, item.id)}>DELETE</button> */}
           </TaskContainer>
         );
       })}

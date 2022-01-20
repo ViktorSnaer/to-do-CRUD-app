@@ -28,7 +28,7 @@ const DropDown = styled.select`
 `;
 
 const SubmitButton = styled.button`
-  background-color: transparent;
+  background-color: #f5eedc;
   height: 2rem;
   font-size: 1.2rem;
   border-radius: 5px;
@@ -68,9 +68,9 @@ const NewTask: React.FC<NewTaskProps> = ({ onAddTask }) => {
         />
         <DropDown name="priority" id="priority" onChange={onPriorityHandler}>
           <option value="3">Set Priority</option>
-          <option value="3">Important</option>
-          <option value="2">middle</option>
-          <option value="1">not that important</option>
+          <option value="3">High</option>
+          <option value="2">Medium</option>
+          <option value="1">Low</option>
         </DropDown>
         <SubmitButton type="submit">ADD TASK</SubmitButton>
       </TaskContainer>
