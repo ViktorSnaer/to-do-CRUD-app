@@ -67,10 +67,10 @@ const NewTask: React.FC<NewTaskProps> = ({ onAddTask }) => {
           value={taskText}
         />
         <DropDown name="priority" id="priority" onChange={onPriorityHandler}>
-          <option value="3">Set Priority</option>
-          <option value="3">High</option>
-          <option value="2">Medium</option>
-          <option value="1">Low</option>
+          <option value={"3"}>Set Priority</option>
+          <option value={"3"}>High</option>
+          <option value={"2"}>Medium</option>
+          <option value={"1"}>Low</option>
         </DropDown>
         <SubmitButton type="submit">ADD TASK</SubmitButton>
       </TaskContainer>

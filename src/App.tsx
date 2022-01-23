@@ -1,23 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  doc,
+  deleteDoc,
+  updateDoc,
+} from "firebase/firestore";
+import { firebaseApp } from "./firebase-config";
+
 import NewTask from "./components/NewTask";
 import ToDoList from "./components/ToDoList";
-import styled from "styled-components";
+
+const db = getFirestore(firebaseApp);
+const usersTasksRef = collection(db, "tasks");
+
 function App() {
+  useEffect(() => {
+    getTasks();
+  }, []);
+
   const [tasks, setTasks] = useState<
     { id: string; text: string; priority: string }[]
   >([]);
 
-  const addTaskHandler = (text: string, priority: string) => {
-    setTasks((previousTasks) => [
-      ...previousTasks,
-      { id: Math.random().toString(), text: text, priority: priority },
-    ]);
+  const getTasks = async () => {
+    const tasks = await getDocs(usersTasksRef);
+
+    const mapTasks = tasks.docs.map((task) => ({
+      id: task.id,
+      text: task.data().task,
+      priority: task.data().priority,
+    }));
+    setTasks(mapTasks);
   };
 
-  const taskDeleteHandler = (taskId: string) => {
-    setTasks((previousTasks) => {
-      return previousTasks.filter((task) => task.id !== taskId);
-    });
+  const addTaskHandler = async (text: string, priority: string) => {
+    await addDoc(usersTasksRef, { task: text, priority });
+    // firestore database creates id string
+    getTasks();
+  };
+
+  const taskDeleteHandler = async (taskId: string) => {
+    // get ref to exact document using the doc()
+    const taskDocument = doc(db, "tasks", taskId);
+    await deleteDoc(taskDocument);
+    getTasks();
+  };
+
+  const taskUpdateHandler = async (taskId: string, task: string | null) => {
+    const taskDocument = doc(db, "tasks", taskId);
+    await updateDoc(taskDocument, { task });
   };
 
   const App = styled.div`
@@ -34,7 +70,11 @@ function App() {
     <App>
       <Title>To-do list app</Title>
       <NewTask onAddTask={addTaskHandler} />
-      <ToDoList items={tasks} onDeleteTask={taskDeleteHandler} />
+      <ToDoList
+        items={tasks}
+        onDeleteTask={taskDeleteHandler}
+        onUpdateHandler={taskUpdateHandler}
+      />
     </App>
   );
 }

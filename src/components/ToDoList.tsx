@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const TaskList = styled.ul`
@@ -36,9 +36,16 @@ const CheckBox = styled.input`
 interface ToDoListProps {
   items: { id: string; text: string; priority: string }[];
   onDeleteTask: (id: string) => void;
+  onUpdateHandler: (id: string, text: string) => void;
 }
 
-const ToDoList: React.FC<ToDoListProps> = ({ items, onDeleteTask }) => {
+const ToDoList: React.FC<ToDoListProps> = ({
+  items,
+  onDeleteTask,
+  onUpdateHandler,
+}) => {
+  const [updateTask, setUpdateTask] = useState<string | null>("");
+
   const sortedItems = items.sort((a, b) => {
     if (a.priority > b.priority) {
       return -1;
@@ -65,7 +72,16 @@ const ToDoList: React.FC<ToDoListProps> = ({ items, onDeleteTask }) => {
             style={{ backgroundColor: setPriorityColor }}
             key={item.id}
           >
-            <Text contentEditable={true}>{item.text}</Text>
+            <Text
+              contentEditable={true}
+              onInput={(event) =>
+                setUpdateTask(event.currentTarget.textContent)
+              }
+              // ! indicating that there will be a value
+              onBlur={onUpdateHandler.bind(null, item.id, updateTask!)}
+            >
+              {item.text}
+            </Text>
             <CheckBox
               onClick={onDeleteTask.bind(null, item.id)}
               type={"checkbox"}
