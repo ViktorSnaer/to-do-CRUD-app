@@ -1,0 +1,9 @@
+.App {
+  height: 100vh;
+  background-image: linear-gradient(
+    to right,
+    #f4afc2 0%,
+    #f195ac 51%,
+    #b28bc0 100%
+  );
+}

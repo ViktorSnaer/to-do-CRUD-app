@@ -15,8 +15,6 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
-//hello world
-
 const db = getFirestore(firebaseApp);
 const usersTasksRef = collection(db, "tasks");
 
@@ -58,18 +56,19 @@ function MainPage() {
     await updateDoc(taskDocument, { task });
   };
 
-  const App = styled.div`
+  const MainPage = styled.div`
     max-width: 1000px;
-    margin: auto;
-    padding: 1rem;
+    margin: 0 auto;
+    padding: 0;
   `;
 
   const Title = styled.h1`
     text-align: center;
+    margin: 0;
   `;
 
   return (
-    <App>
+    <MainPage>
       <Title>To-do list app</Title>
       <NewTask onAddTask={addTaskHandler} />
       <ToDoList
@@ -77,7 +76,7 @@ function MainPage() {
         onDeleteTask={taskDeleteHandler}
         onUpdateHandler={taskUpdateHandler}
       />
-    </App>
+    </MainPage>
   );
 }
 
