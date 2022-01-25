@@ -4,7 +4,7 @@ import styled from "styled-components";
 import NewTask from "./components/NewTask";
 import ToDoList from "./components/ToDoList";
 
-import { firebaseApp } from "./firebase-config";
+import { firebaseApp } from "./firebase/firebase-config";
 import {
   getFirestore,
   collection,
@@ -21,6 +21,7 @@ const usersTasksRef = collection(db, "tasks");
 function MainPage() {
   useEffect(() => {
     getTasks();
+    return;
   }, []);
 
   const [tasks, setTasks] = useState<
