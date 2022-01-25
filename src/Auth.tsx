@@ -1,6 +1,6 @@
-import React from "react";
 import styled from "styled-components";
 import Button from "./components/shared/Button";
+
 
 const PageContainer = styled.div`
   height: 100%;
@@ -21,11 +21,12 @@ const AuthContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #ffcbcb;
+  background-color: #fff9f9;
 `;
 
 const Title = styled.h1`
   text-align: center;
+  margin: 0;
 `;
 
 const ButtonContainer = styled.div`
@@ -37,9 +38,12 @@ export default function Auth() {
   return (
     <PageContainer>
       <AuthContainer>
-        <Title>To Do App</Title>
+        <Title>To Do App ✅</Title>
         <ButtonContainer>
-          <Button text={"Sign In with Google"}></Button>
+          <Button
+            text={"Sign In with Google"}
+            onClick={() => console.log("I was clicked")}
+          ></Button>
         </ButtonContainer>
         <a href="/">Test Account</a>
       </AuthContainer>

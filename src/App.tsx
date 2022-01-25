@@ -10,7 +10,7 @@ const AppComponent = styled.div`
   background-color: #3e2c41;
 `;
 
-const user = true;
+const user = false;
 
 function App() {
   return (
