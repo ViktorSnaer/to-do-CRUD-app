@@ -1,3 +1,1 @@
-import React from "react";
-
-export const AuthContext = React.createContext<string | null>(null);
+import React, { createContext } from "react";

@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import Button from "./components/shared/Button";
 
+import { GoogleAuthProvider, getAuth, signInWithRedirect } from "firebase/auth";
+
+const signIn = () => {
+  const auth = getAuth();
+  const provider = new GoogleAuthProvider();
+  signInWithRedirect(auth, provider);
+};
 
 const PageContainer = styled.div`
   height: 100%;
@@ -42,7 +49,7 @@ export default function Auth() {
         <ButtonContainer>
           <Button
             text={"Sign In with Google"}
-            onClick={() => console.log("I was clicked")}
+            onClick={() => signIn()}
           ></Button>
         </ButtonContainer>
         <a href="/">Test Account</a>
