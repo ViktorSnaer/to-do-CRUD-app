@@ -1,12 +1,30 @@
 import styled from "styled-components";
 import Button from "./components/shared/Button";
+import app from "./firebase/firebase-config";
 
-import { GoogleAuthProvider, getAuth, signInWithRedirect } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithRedirect,
+  signOut,
+} from "firebase/auth";
+
+const auth = getAuth(app);
 
 const signIn = () => {
-  const auth = getAuth();
   const provider = new GoogleAuthProvider();
   signInWithRedirect(auth, provider);
+  // TODO redirect to users page
+};
+
+export const signOutHandler = () => {
+  signOut(auth)
+    .then(() => {
+      // TODO redirect to auth page
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
 const PageContainer = styled.div`

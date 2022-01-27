@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import app from "./firebase-config";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const AuthContext = React.createContext<string | null>(null);
@@ -9,8 +10,7 @@ export const useAuth = () => {
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<string | null>(null);
-
-  const auth = getAuth();
+  const auth = getAuth(app);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {

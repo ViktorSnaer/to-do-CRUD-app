@@ -3,8 +3,9 @@ import styled from "styled-components";
 
 import NewTask from "./components/NewTask";
 import ToDoList from "./components/ToDoList";
+import { signOutHandler } from "./Auth";
 
-import { firebaseApp } from "./firebase/firebase-config";
+import app from "./firebase/firebase-config";
 import {
   getFirestore,
   collection,
@@ -14,8 +15,9 @@ import {
   deleteDoc,
   updateDoc,
 } from "firebase/firestore";
+import Button from "./components/shared/Button";
 
-const db = getFirestore(firebaseApp);
+const db = getFirestore(app);
 const usersTasksRef = collection(db, "tasks");
 
 function MainPage() {
@@ -70,6 +72,7 @@ function MainPage() {
 
   return (
     <MainPage>
+      <Button text={"sign out"} onClick={() => signOutHandler()}></Button>
       <Title>To-do list app</Title>
       <NewTask onAddTask={addTaskHandler} />
       <ToDoList
