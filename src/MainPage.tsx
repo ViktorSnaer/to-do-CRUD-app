@@ -4,6 +4,7 @@ import styled from "styled-components";
 import NewTask from "./components/NewTask";
 import ToDoList from "./components/ToDoList";
 import { signOutHandler } from "./Auth";
+import { useAuth } from "./firebase/AuthProvider";
 
 import app from "./firebase/firebase-config";
 import {
@@ -17,14 +18,16 @@ import {
 } from "firebase/firestore";
 import Button from "./components/shared/Button";
 
-const db = getFirestore(app);
-const usersTasksRef = collection(db, "tasks");
-
 function MainPage() {
   useEffect(() => {
     getTasks();
     return;
   }, []);
+
+  const db = getFirestore(app);
+  const userId = useAuth();
+  const tasksDocumentPath = `users/${userId}/tasks`;
+  const usersTasksRef = collection(db, tasksDocumentPath);
 
   const [tasks, setTasks] = useState<
     { id: string; text: string; priority: string }[]
@@ -49,13 +52,13 @@ function MainPage() {
 
   const taskDeleteHandler = async (taskId: string) => {
     // get ref to exact document using the doc()
-    const taskDocument = doc(db, "tasks", taskId);
+    const taskDocument = doc(db, tasksDocumentPath, taskId);
     await deleteDoc(taskDocument);
     getTasks();
   };
 
   const taskUpdateHandler = async (taskId: string, task: string | null) => {
-    const taskDocument = doc(db, "tasks", taskId);
+    const taskDocument = doc(db, tasksDocumentPath, taskId);
     await updateDoc(taskDocument, { task });
   };
 
@@ -72,7 +75,7 @@ function MainPage() {
 
   return (
     <MainPage>
-      <Button text={"sign out"} onClick={() => signOutHandler()}></Button>
+      <Button text={"sign out"} onClick={() => signOutHandler()} />
       <Title>To-do list app</Title>
       <NewTask onAddTask={addTaskHandler} />
       <ToDoList

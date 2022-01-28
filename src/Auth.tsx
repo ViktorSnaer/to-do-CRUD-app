@@ -9,23 +9,9 @@ import {
   signOut,
 } from "firebase/auth";
 
-const auth = getAuth(app);
+import { getFirestore, setDoc, doc } from "firebase/firestore";
 
-const signIn = () => {
-  const provider = new GoogleAuthProvider();
-  signInWithRedirect(auth, provider);
-  // TODO redirect to users page
-};
-
-export const signOutHandler = () => {
-  signOut(auth)
-    .then(() => {
-      // TODO redirect to auth page
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
+import { useAuth } from "./firebase/AuthProvider";
 
 const PageContainer = styled.div`
   height: 100%;
@@ -59,7 +45,35 @@ const ButtonContainer = styled.div`
   justify-content: center;
 `;
 
+const auth = getAuth(app);
+
+export const signOutHandler = () => {
+  signOut(auth)
+    .then(() => {
+      // TODO redirect to auth page
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
 export default function Auth() {
+  const db = getFirestore(app);
+  const userId = useAuth();
+
+  const addUserHandler = async () => {
+    await setDoc(doc(db, "users", `${userId}`), {
+      // new user added to the doc
+    });
+  };
+
+  const signIn = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(auth, provider).then(() => {
+      addUserHandler();
+    });
+  };
+
   return (
     <PageContainer>
       <AuthContainer>
