@@ -61,11 +61,11 @@ const ToDoList: React.FC<ToDoListProps> = ({
       {sortedItems.map((item) => {
         let setPriorityColor = "";
         if (item.priority === "3") {
-          setPriorityColor = "#445942";
+          setPriorityColor = "#d77fa1";
         } else if (item.priority === "2") {
-          setPriorityColor = "#809370";
+          setPriorityColor = "#baabda";
         } else {
-          setPriorityColor = "#c3d3b2";
+          setPriorityColor = "#d6e5fa";
         }
         return (
           <TaskContainer

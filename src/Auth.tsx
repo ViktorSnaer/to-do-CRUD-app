@@ -15,9 +15,8 @@ import { useAuth } from "./firebase/AuthProvider";
 
 const PageContainer = styled.div`
   height: 100%;
-  max-width: 1000px;
-  min-width: 500px;
-  width: 30%;
+  max-width: 500px;
+  width: 95%;
   margin: auto;
   display: flex;
   align-items: center;

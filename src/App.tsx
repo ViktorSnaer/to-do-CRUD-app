@@ -6,7 +6,7 @@ import { useAuth } from "./firebase/AuthProvider";
 
 const AppComponent = styled.div`
   margin: auto;
-  padding: 0;
+  padding: 1rem;
   height: 100vh;
   background-color: #3e2c41;
 `;

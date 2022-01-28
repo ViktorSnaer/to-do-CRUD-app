@@ -64,8 +64,11 @@ function MainPage() {
 
   const MainPage = styled.div`
     max-width: 1000px;
-    margin: 0 auto;
-    padding: 0;
+    min-height: 80vh;
+    margin: auto;
+    padding: 2rem;
+    background-color: #fff9f9;
+    border-radius: 10px;
   `;
 
   const Title = styled.h1`
@@ -75,14 +78,14 @@ function MainPage() {
 
   return (
     <MainPage>
-      <Button text={"sign out"} onClick={() => signOutHandler()} />
-      <Title>To-do list app</Title>
+      <Title>To Do App ✅</Title>
       <NewTask onAddTask={addTaskHandler} />
       <ToDoList
         items={tasks}
         onDeleteTask={taskDeleteHandler}
         onUpdateHandler={taskUpdateHandler}
       />
+      <Button text={"sign out"} onClick={() => signOutHandler()} />
     </MainPage>
   );
 }

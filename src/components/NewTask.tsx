@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Button from "./shared/Button";
 
 type NewTaskProps = {
   onAddTask: (taskText: string, priority: string) => void;
@@ -14,6 +15,7 @@ const TaskInput = styled.input`
   border: none;
   border-bottom: 1px solid black;
   margin: 1rem 0;
+  background-color: transparent;
   font-size: 1.4rem;
   &:focus {
     outline: none;
@@ -25,14 +27,7 @@ const DropDown = styled.select`
   font-size: 1.2rem;
   border-radius: 5px;
   height: 2rem;
-`;
-
-const SubmitButton = styled.button`
-  background-color: #f5eedc;
-  height: 2rem;
-  font-size: 1.2rem;
-  border-radius: 5px;
-  margin: 1rem 0;
+  background-color: transparent;
 `;
 
 const NewTask: React.FC<NewTaskProps> = ({ onAddTask }) => {
@@ -72,7 +67,7 @@ const NewTask: React.FC<NewTaskProps> = ({ onAddTask }) => {
           <option value={"2"}>Medium</option>
           <option value={"1"}>Low</option>
         </DropDown>
-        <SubmitButton type="submit">ADD TASK</SubmitButton>
+        <Button text={"ADD NEW TASK"} onClick={() => ""} />
       </TaskContainer>
     </form>
   );
