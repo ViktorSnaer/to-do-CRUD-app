@@ -62,11 +62,20 @@ function MainPage() {
     await updateDoc(taskDocument, { task });
   };
 
-  const MainPage = styled.div`
+  const CenterContainer = styled.div`
+    min-height: 100vh;
     max-width: 1000px;
-    min-height: 80vh;
     margin: auto;
-    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `;
+
+  const ToDoContainer = styled.div`
+    width: 100%;
+    min-height: 90vh;
+    margin: 1rem;
+    padding: 1.5rem;
     background-color: #fff9f9;
     border-radius: 10px;
   `;
@@ -77,16 +86,18 @@ function MainPage() {
   `;
 
   return (
-    <MainPage>
-      <Title>To Do App ✅</Title>
-      <NewTask onAddTask={addTaskHandler} />
-      <ToDoList
-        items={tasks}
-        onDeleteTask={taskDeleteHandler}
-        onUpdateHandler={taskUpdateHandler}
-      />
-      <Button text={"sign out"} onClick={() => signOutHandler()} />
-    </MainPage>
+    <CenterContainer>
+      <ToDoContainer>
+        <Title>To Do App ✅</Title>
+        <NewTask onAddTask={addTaskHandler} />
+        <ToDoList
+          items={tasks}
+          onDeleteTask={taskDeleteHandler}
+          onUpdateHandler={taskUpdateHandler}
+        />
+        <Button text={"sign out"} onClick={() => signOutHandler()} />
+      </ToDoContainer>
+    </CenterContainer>
   );
 }
 
