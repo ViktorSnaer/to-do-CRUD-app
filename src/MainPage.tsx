@@ -73,16 +73,33 @@ function MainPage() {
 
   const ToDoContainer = styled.div`
     width: 100%;
-    min-height: 90vh;
+    min-height: 85vh;
     margin: 1rem;
     padding: 1.5rem;
     background-color: #fff9f9;
     border-radius: 10px;
+    position: relative;
   `;
 
   const Title = styled.h1`
     text-align: center;
     margin: 0;
+  `;
+
+  const SignOut = styled.p`
+    text-align: center;
+    text-decoration: underline;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    cursor: pointer;
+    &:hover {
+      color: #baabda;
+    }
   `;
 
   return (
@@ -95,7 +112,7 @@ function MainPage() {
           onDeleteTask={taskDeleteHandler}
           onUpdateHandler={taskUpdateHandler}
         />
-        <Button text={"sign out"} onClick={() => signOutHandler()} />
+        <SignOut onClick={signOutHandler}>Sign Out</SignOut>
       </ToDoContainer>
     </CenterContainer>
   );

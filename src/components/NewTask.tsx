@@ -13,7 +13,7 @@ const TaskContainer = styled.div`
 
 const TaskInput = styled.input`
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid grey;
   margin: 1rem 0;
   background-color: transparent;
   font-size: 1.4rem;

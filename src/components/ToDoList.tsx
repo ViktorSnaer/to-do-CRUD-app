@@ -15,10 +15,13 @@ const TaskContainer = styled.li`
 `;
 
 const Text = styled.p`
-  width: 90%;
+  width: 85%;
   padding: 0;
   margin: 0;
   display: inline-block;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const CheckBox = styled.input`
