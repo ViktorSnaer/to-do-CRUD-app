@@ -16,7 +16,6 @@ import {
   deleteDoc,
   updateDoc,
 } from "firebase/firestore";
-import Button from "./components/shared/Button";
 
 function MainPage() {
   useEffect(() => {

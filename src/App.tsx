@@ -10,14 +10,11 @@ const AppComponent = styled.div`
   background-color: #3e2c41;
 `;
 
-let user = false;
-
 function App() {
   // useAuth function returns email of user or if no user returns null
-  useAuth() ? (user = true) : (user = false);
   return (
     <AppComponent className={styles.App}>
-      {user ? <MainPage /> : <Auth />}
+      {useAuth() ? <MainPage /> : <Auth />}
     </AppComponent>
   );
 }

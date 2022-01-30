@@ -14,7 +14,7 @@ import { getFirestore, setDoc, doc } from "firebase/firestore";
 import { useAuth } from "./firebase/AuthProvider";
 
 const PageContainer = styled.div`
-  height: 100%;
+  height: 100vh;
   max-width: 500px;
   width: 95%;
   margin: auto;
@@ -36,12 +36,13 @@ const AuthContainer = styled.div`
 
 const Title = styled.h1`
   text-align: center;
-  margin: 0;
+  margin: 0.5rem;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
+  margin: 0.5rem;
 `;
 
 const auth = getAuth(app);
@@ -83,7 +84,6 @@ export default function Auth() {
             onClick={() => signIn()}
           ></Button>
         </ButtonContainer>
-        <a href="/">Test Account</a>
       </AuthContainer>
     </PageContainer>
   );
