@@ -66,9 +66,12 @@ const ToDoList: React.FC<ToDoListProps> = ({
           >
             <Text
               contentEditable={true}
-              onInput={(event) =>
-                setUpdateTask(event.currentTarget.textContent)
-              }
+              onClick={(event) => {
+                setUpdateTask(event.currentTarget.textContent);
+              }}
+              onInput={(event) => {
+                setUpdateTask(event.currentTarget.textContent);
+              }}
               // ! indicating that there will be a value
               onBlur={onUpdateHandler.bind(null, item.id, updateTask!)}
             >
