@@ -13,6 +13,8 @@ import { getFirestore, setDoc, doc } from "firebase/firestore";
 
 import { useAuth } from "./firebase/AuthProvider";
 
+import LoadingSpinner from "./components/shared/LoadingSpinner";
+
 const PageContainer = styled.div`
   height: 100vh;
   max-width: 500px;
@@ -48,6 +50,7 @@ const ButtonContainer = styled.div`
 const auth = getAuth(app);
 
 export const signOutHandler = () => {
+  window.location.hash = "";
   signOut(auth)
     .then(() => {
       // TODO redirect to auth page
@@ -60,31 +63,35 @@ export const signOutHandler = () => {
 export default function Auth() {
   const db = getFirestore(app);
   const userId = useAuth();
-
   const addUserHandler = async () => {
     await setDoc(doc(db, "users", `${userId}`), {
       // new user added to the doc
     });
   };
 
-  const signIn = () => {
+  const signIn = async () => {
+    window.location.hash = "app";
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider).then(() => {
+    await signInWithRedirect(auth, provider).then(() => {
       addUserHandler();
     });
   };
 
   return (
     <PageContainer>
-      <AuthContainer>
-        <Title>To Do App ✅</Title>
-        <ButtonContainer>
-          <Button
-            text={"Sign In with Google"}
-            onClick={() => signIn()}
-          ></Button>
-        </ButtonContainer>
-      </AuthContainer>
+      {window.location.hash === "#app" ? (
+        <LoadingSpinner />
+      ) : (
+        <AuthContainer>
+          <Title>To Do App ✅</Title>
+          <ButtonContainer>
+            <Button
+              text={"Sign In with Google"}
+              onClick={() => signIn()}
+            ></Button>
+          </ButtonContainer>
+        </AuthContainer>
+      )}
     </PageContainer>
   );
 }

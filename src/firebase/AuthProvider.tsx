@@ -21,7 +21,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       }
     });
     return unsubscribe;
-  }, []);
+  }, [currentUser, auth]);
 
   return (
     <AuthContext.Provider value={currentUser}>{children}</AuthContext.Provider>

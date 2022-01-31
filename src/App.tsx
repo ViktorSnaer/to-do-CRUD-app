@@ -12,6 +12,7 @@ const AppComponent = styled.div`
 
 function App() {
   // useAuth function returns email of user or if no user returns null
+
   return (
     <AppComponent className={styles.App}>
       {useAuth() ? <MainPage /> : <Auth />}
