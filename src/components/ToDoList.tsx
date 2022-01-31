@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import CustomCheckbox from "./shared/CustomCheckbox";
 
 const TaskList = styled.ul`
   list-style-type: none;
@@ -22,18 +23,6 @@ const Text = styled.p`
   &:focus {
     outline: none;
   }
-`;
-
-const CheckBox = styled.input`
-  width: 1.3rem;
-  height: 1.3rem;
-  background-color: white;
-  border-radius: 20%;
-  vertical-align: middle;
-  appearance: none;
-  outline: none;
-  cursor: pointer;
-  float: right;
 `;
 
 interface ToDoListProps {
@@ -85,11 +74,7 @@ const ToDoList: React.FC<ToDoListProps> = ({
             >
               {item.text}
             </Text>
-            <CheckBox
-              onClick={onDeleteTask.bind(null, item.id)}
-              type={"checkbox"}
-              id="finished"
-            />
+            <CustomCheckbox onClick={onDeleteTask.bind(null, item.id)} />
           </TaskContainer>
         );
       })}

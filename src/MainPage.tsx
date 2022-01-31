@@ -72,7 +72,7 @@ function MainPage() {
 
   const ToDoContainer = styled.div`
     width: 100%;
-    min-height: 85vh;
+    min-height: 90vh;
     margin: 1rem;
     padding: 1.5rem;
     background-color: #fff9f9;
