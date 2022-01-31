@@ -41,6 +41,22 @@ const Title = styled.h1`
   margin: 0.5rem;
 `;
 
+const About = styled.p`
+  text-align: center;
+  padding: 0 1rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
+`;
+
+const HomepageLink = styled.a`
+  text-decoration: none;
+
+  color: #baabda;
+  &:hover {
+    color: #d77fa1;
+  }
+`;
+
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -84,12 +100,26 @@ export default function Auth() {
       ) : (
         <AuthContainer>
           <Title>To Do App ✅</Title>
+          <About>
+            Create and set the priority of each task, update and hopefully
+            finish some tasks. Create account / sign in down below its free 🎉
+          </About>
           <ButtonContainer>
             <Button
               text={"Sign In with Google"}
               onClick={() => signIn()}
             ></Button>
           </ButtonContainer>
+          <About>
+            Created by{" "}
+            <HomepageLink
+              href="https://viktorsnaer.com/"
+              target={"_blank"}
+              rel="noreferrer"
+            >
+              Viktor Snaer
+            </HomepageLink>
+          </About>
         </AuthContainer>
       )}
     </PageContainer>

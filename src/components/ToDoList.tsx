@@ -20,6 +20,7 @@ const Text = styled.p`
   padding: 0;
   margin: 0;
   display: inline-block;
+  color: black;
   &:focus {
     outline: none;
   }
