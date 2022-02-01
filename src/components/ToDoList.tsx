@@ -12,11 +12,12 @@ const TaskContainer = styled.li`
   font-size: 1.4rem;
   border-radius: 10px;
   padding: 1rem;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
 `;
 
 const Text = styled.p`
-  width: 85%;
+  max-width: 85%;
+  width: fit-content;
   padding: 0;
   margin: 0;
   display: inline-block;
@@ -60,6 +61,7 @@ const ToDoList: React.FC<ToDoListProps> = ({
         } else {
           setPriorityColor = "#d6e5fa";
         }
+
         return (
           <TaskContainer
             style={{ backgroundColor: setPriorityColor }}
@@ -67,9 +69,7 @@ const ToDoList: React.FC<ToDoListProps> = ({
           >
             <Text
               contentEditable={true}
-              onClick={(event) => {
-                setUpdateTask(event.currentTarget.textContent);
-              }}
+              suppressContentEditableWarning={true}
               onInput={(event) => {
                 setUpdateTask(event.currentTarget.textContent);
               }}
