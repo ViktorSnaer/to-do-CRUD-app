@@ -50,7 +50,6 @@ const About = styled.p`
 
 const HomepageLink = styled.a`
   text-decoration: none;
-
   color: #baabda;
   &:hover {
     color: #d77fa1;

@@ -36,7 +36,11 @@ const NewTask: React.FC<NewTaskProps> = ({ onAddTask }) => {
 
   const taskSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    onAddTask(taskText, priorityLevel);
+    if (taskText.length > 0) {
+      onAddTask(taskText, priorityLevel);
+    } else {
+      alert("Nothing inserted. Please insert a task");
+    }
     setTaskText("");
   };
 
